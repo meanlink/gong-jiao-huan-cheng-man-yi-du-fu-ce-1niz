@@ -4,6 +4,7 @@ const path = (suffix = '') => planPath(`/support${suffix}`);
 export const supportApi = {
   board: () => api(path()),
   desk: (desk, data) => api(path(`/desks/${desk}`), 'PUT', data),
+  share: (desk, planIds) => api(path(`/desks/${desk}/sharing`), 'PUT', {plan_ids: planIds}),
   publish: data => api(path('/notices'), 'POST', data),
   register: data => api(path('/cases'), 'POST', data),
   timeline: id => api(path(`/cases/${id}/timeline`)),

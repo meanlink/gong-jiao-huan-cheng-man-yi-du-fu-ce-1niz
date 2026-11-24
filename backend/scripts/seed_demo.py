@@ -55,7 +55,8 @@ def seed():
                               (SELECT count(*) FROM survey_sample) AS samples,
                               (SELECT count(*) FROM route_walk_check) AS walks,
                               (SELECT count(*) FROM route_handover) AS handovers,
-                              (SELECT count(*) FROM support_desk) AS desks,
+                              (SELECT count(*) FROM support_counter) AS counters,
+                              (SELECT count(*) FROM support_counter_member) AS counter_members,
                               (SELECT count(*) FROM support_notice) AS notices,
                               (SELECT count(*) FROM support_case) AS support_cases,
                               (SELECT count(*) FROM support_case_event) AS support_events''').fetchone()

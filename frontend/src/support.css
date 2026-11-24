@@ -28,6 +28,12 @@
 .case-actions details { padding-top: 5px; }
 .case-history ol { display: grid; gap: 6px; margin: 8px 0 0; padding-left: 20px; }
 .desk-alert { color: #8b4427; }
+.desk-shared { color: #295949; font-size: 13px; }
+.share-lines { border: 0; margin: 0; padding: 0; display: grid; gap: 6px; }
+.share-lines legend { font-size: 13px; color: #51685c; padding: 0 0 4px; }
+.share-lines label { display: flex; align-items: center; gap: 7px; font-size: 13px; }
+.share-lines input[type="checkbox"] { width: auto; }
+.queue-pos { color: #8b4427; }
 .resolution { margin-top: 9px; padding: 8px; background: #e6eee4; border-radius: 4px; }
 .resolution p { margin-bottom: 0; }
 @media (max-width: 1080px) { .support-overview { grid-template-columns: minmax(0, 1fr); } }

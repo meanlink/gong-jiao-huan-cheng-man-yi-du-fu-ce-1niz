@@ -23,6 +23,10 @@ class DeskSettings(Input):
     available: StrictBool
 
 
+class CounterSharing(Input):
+    plan_ids: list[int] = Field(min_length=1, max_length=20)
+
+
 class NoticeText(Input):
     meeting_point: str = Field(min_length=2, max_length=100)
     directions: str = Field(min_length=8, max_length=280)

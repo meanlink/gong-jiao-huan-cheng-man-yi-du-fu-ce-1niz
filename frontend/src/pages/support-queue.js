@@ -7,13 +7,15 @@ const time = new Intl.DateTimeFormat('zh-CN', {timeZone: 'Asia/Shanghai', dateSt
 function caseCard(item, board, role) {
   const {id, category, desk, resolved_at, notice_edition, landmark, description, resolution} = item;
   const entry = board.desks.find(option => option.desk === desk);
-  const route = desk ? `${deskNames[desk]} · ${routeReasons[item.route_reason]}` : '暂无可接单服务点';
+  const shared = entry?.shared ? ' · 共用柜台' : '';
+  const route = desk ? `${deskNames[desk]}${shared} · ${routeReasons[item.route_reason]}` : '暂无可接单服务点';
   const status = resolved_at ? '已办结' : (desk ? '已派单' : '待派单');
   return `<li class="case-card" data-case="${id}"><div class="desk-head">
     <span class="mono case-ref">#${id}</span><h3>${categoryNames[category]}</h3>
     <span class="chip ${resolved_at ? 'decided' : 'queue'}">${status}</span></div>
     <p><strong>${esc(landmark)}</strong> · ${esc(description)}</p>
-    <div class="case-route"><strong>${route}</strong><small>指引第 ${notice_edition} 版</small></div>
+    <div class="case-route"><strong>${route}</strong><small>指引第 ${notice_edition} 版</small>
+    ${!desk && !resolved_at && item.queue_position ? `<small class="queue-pos">共享队列第 ${item.queue_position} 位</small>` : ''}</div>
     ${desk && !resolved_at && !entry?.available ? '<p class="desk-alert">当前服务点已暂停，待调度确认。</p>' : ''}
     ${resolution ? `<div class="resolution"><strong>处理结果</strong><p>${esc(resolution)}</p></div>` : ''}
     ${role === 'analyst' && !resolved_at ? `<div class="case-actions"><button class="quiet" data-redispatch="${id}">重新分派</button>
